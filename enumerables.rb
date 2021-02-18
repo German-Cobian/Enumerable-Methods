@@ -65,22 +65,34 @@ def my_count
   counter
 end
 
+def my_map
+  mapped = []
+  length.times do |i|
+    doubled = yield to_a[i]
+    mapped.push(doubled)
+  end
+  mapped
+end
+end
+
     
 puts "This is my-each method"
 
-[1, 2, 3, 4, 5, 6, 7,].my_each { |num| puts num }
+[1, 2, 3, 4, 5, 6, 7, 8].my_each { |num| puts num }
 
-[1, 2, 3, 4, 5, 6, 7,].my_each_with_index { |num, i| puts "#{i} : #{num}" }
+[1, 2, 3, 4, 5, 6, 7, 8].my_each_with_index { |num, i| puts "#{i} : #{num}" }
 
-[1, 2, 3, 4, 5, 6, 7,].my_select { |num| puts num if num.even? }
+[1, 2, 3, 4, 5, 6, 7, 8].my_select { |num| puts num if num.even? }
 
-puts ([1, 2, 3, 4, 5, 6, 7,].my_all { |num| num%1 == 0 })
+puts ([1, 2, 3, 4, 5, 6, 7, 8].my_all { |num| num%1 == 0 })
 
-puts ([1, 2, 3, 4, 5, 6, 7,].my_any { |num| num%7 == 0 })
+puts ([1, 2, 3, 4, 5, 6, 7, 8].my_any { |num| num%7 == 0 })
 
-puts ([1, 2, 3, 4, 5, 6, 7,].my_none { |num| num%9 == 0 })
+puts ([1, 2, 3, 4, 5, 6, 7, 8].my_none { |num| num%9 == 0 })
 
-puts([1, 2, 3, 4, 5, 6, 7, 8].my_count { |num| num.odd? })
+puts ([1, 2, 3, 4, 5, 6, 7, 8].my_count { |num| num.odd? })
+
+puts ((1..5).my_map { |num| num * 2 })
 
 end 
 
