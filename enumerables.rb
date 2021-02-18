@@ -21,6 +21,18 @@ def my_select
   end
 end
 
+def my_all  
+  test = true
+  length.times do |i|
+    evaluation = yield to_a[i]
+    unless evaluation
+      test = false
+      break
+    end
+  end
+  test
+end 
+    
 puts "This is my-each method"
 
 [1, 2, 3, 4, 5, 6, 7,].my_each { |num| puts num }
@@ -28,8 +40,10 @@ puts "This is my-each method"
 [1, 2, 3, 4, 5, 6, 7,].my_each_with_index { |num, i| puts "#{i} : #{num}" }
 
 [1, 2, 3, 4, 5, 6, 7,].my_select { |num| puts num if num.even? }
-end
 
+puts ([1, 2, 3, 4, 5, 6, 7,].my_all { |num| num%1 == 0 })
+  
+end 
 
 
 
