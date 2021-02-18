@@ -55,7 +55,16 @@ def my_none
     end
   end
   test
-end 
+end
+
+def my_count
+  counter = 0
+  length.times do |i|
+      counter += 1 if yield to_a[i]
+  end
+  counter
+end
+
     
 puts "This is my-each method"
 
@@ -70,7 +79,9 @@ puts ([1, 2, 3, 4, 5, 6, 7,].my_all { |num| num%1 == 0 })
 puts ([1, 2, 3, 4, 5, 6, 7,].my_any { |num| num%7 == 0 })
 
 puts ([1, 2, 3, 4, 5, 6, 7,].my_none { |num| num%9 == 0 })
-  
+
+puts([1, 2, 3, 4, 5, 6, 7, 8].my_count { |num| num.odd? })
+
 end 
 
 
