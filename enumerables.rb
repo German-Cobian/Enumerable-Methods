@@ -81,13 +81,13 @@ def my_map(my_proc = nil)
   arr
 end
 
-def my_inject
-  return to_enum(:my_inject) unless block_given? 
-  sum = 0
+def my_inject(arg = (no_arg = true))
+  accu = self[0]
   self.size.times do |i|
-    sum = yield(sum, self.to_a[i])
+    accu = yield(accu, self[i]) if no_arg
+    accu = accu.send(arg, self[i]) unless no_arg
   end
-  sum
+  accu
 end
 
 def multiply_els
