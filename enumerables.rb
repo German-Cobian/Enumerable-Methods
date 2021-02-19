@@ -2,9 +2,12 @@ module Enumerable
 
 
 def my_each
+  return to_enum(:my_each) unless block_given?
+
   self.length.times do |i|
-    yield to_a[i]
+    yield (to_a[i])
   end
+  self
 end
 
 def my_each_with_index
@@ -57,7 +60,7 @@ puts "Output for my_each method"
 
 test_array = [1, 2, 3, 4, 5, 6, 7, 8]
 
-test_array.my_each { |num| puts num }
+p test_array.my_each 
 
 puts "Output for my_each_with_index method"
 
