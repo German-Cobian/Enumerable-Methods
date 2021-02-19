@@ -19,6 +19,8 @@ def my_each_with_index
 end
 
 def my_select 
+  return to_enum(:my_select) unless block_given?
+
   result = []
   self.my_each { |i| result << i unless !yield(i) }
   result
@@ -66,11 +68,11 @@ p test_array.my_each { |num| puts num }
 
 puts "Output for my_each_with_index method"
 
-p test_array.my_each_with_index 
+p test_array.my_each_with_index { |num, i| puts "#{i} : #{num}" }
 
 puts "Output for my_select method"
 
-test_array.my_select { |num| puts num if num.even? }
+p test_array.my_select 
 
 puts "Output for my_all method"
 
