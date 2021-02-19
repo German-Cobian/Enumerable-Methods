@@ -43,6 +43,8 @@ def my_any
 end
   
 def my_none 
+  return to_enum(:my_none) unless block_given? 
+
   result = true
     self.my_each { |i| result = false if yield(i) }
     result
@@ -84,11 +86,11 @@ p test_array.my_all { |num| num%1 == 0 }
 
 puts "Output for my_any method"
 
-p test_array.my_any 
+p test_array.my_any { |num| num%9 == 0 }
 
 puts "Output for my_none method"
 
-puts (test_array.my_none { |num| num%8 == 0 })
+p test_array.my_none 
 
 puts "Output for my_count method"
 
