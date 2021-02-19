@@ -69,6 +69,18 @@ def my_map
   mapped
 end
 
+def my_inject
+  sum = 0
+  self.size.times do |i|
+    sum = yield(sum, self.to_a[i])
+  end
+  sum
+end
+
+def multiply_els
+  self.my_inject { |sum, i| sum * i }
+end
+
     
 puts "Output for my_each method"
 
@@ -102,7 +114,11 @@ p test_array.my_count
 
 puts "Output for my_map method" 
 
-p test_array.my_map { |num| num * 2 } 
+p test_array.my_map { |num| num * 2 }
+
+puts "Output for my_inject method"
+
+puts (test_array.my_inject { |sum, i| sum + i })
 
 end 
 
