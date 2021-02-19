@@ -70,6 +70,7 @@ def my_map
 end
 
 def my_inject
+  return to_enum(:my_inject) unless block_given? 
   sum = 0
   self.size.times do |i|
     sum = yield(sum, self.to_a[i])
@@ -110,7 +111,7 @@ p test_array.my_none { |num| num%8 == 0 }
 
 puts "Output for my_count method"
 
-p test_array.my_count 
+p test_array.my_count { |num| puts num } 
 
 puts "Output for my_map method" 
 
@@ -118,7 +119,7 @@ p test_array.my_map { |num| num * 2 }
 
 puts "Output for my_inject method"
 
-puts (test_array.my_inject { |sum, i| sum + i })
+p test_array.my_inject { |sum, i| sum + i }
 
 end 
 
