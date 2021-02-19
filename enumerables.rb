@@ -58,15 +58,27 @@ def my_count
   result
 end
 
-def my_map
-  return to_enum(:my_map) unless block_given? 
+# def my_map
+#   return to_enum(:my_map) unless block_given? 
 
-  mapped = []
-  self.length.times do |i|
-    doubled = yield to_a[i]
-    mapped.push(doubled)
+#   mapped = []
+#   self.length.times do |i|
+#     doubled = yield to_a[i]
+#     mapped.push(doubled)
+#   end
+#   mapped
+# end
+
+def my_map(my_proc = nil)
+  return to_enum(:my_map) unless block_given? || my_proc
+
+  arr = []
+  if my_proc
+    to_a.my_each { |val| arr << my_proc.call(val) }
+  else 
+    to_a.my_each { |val| arr << yield(val) }
   end
-  mapped
+  arr
 end
 
 def my_inject
