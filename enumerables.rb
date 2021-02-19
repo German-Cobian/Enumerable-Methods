@@ -100,9 +100,9 @@ puts "Output for my_count method"
 
 p test_array.my_count 
 
-puts "Output for my_map method"
+puts "Output for my_map method" 
 
-p test_array.my_map 
+p test_array.my_map { |num| num * 2 } 
 
 end 
 
