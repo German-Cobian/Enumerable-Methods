@@ -3,6 +3,7 @@
 module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
+
     self.length.times do |i|
     yield (to_a[i])
     end
@@ -11,6 +12,7 @@ module Enumerable
 
   def my_each_with_index
     return to_enum(:my_each_with_index) unless block_given?
+
     self.length.times do |i|
     yield to_a[i], i
     end
@@ -18,6 +20,7 @@ module Enumerable
 
   def my_select 
     return to_enum(:my_select) unless block_given?
+    
     result = []
     self.my_each { |i| result << i if yield(i) }
     result
@@ -25,6 +28,7 @@ module Enumerable
 
   def my_all 
     return to_enum(:my_all) unless block_given?
+
     result = true
     self.my_each{ |i| result = false unless yield(i)}
     result
@@ -32,6 +36,7 @@ module Enumerable
 
   def my_any
     return to_enum(:my_any) unless block_given?
+
     result = false
     self.my_each { |i| result = true if yield(i) }
     result
@@ -39,6 +44,7 @@ module Enumerable
     
   def my_none 
     return to_enum(:my_none) unless block_given?
+
     result = true
     self.my_each { |i| result = false if yield(i) }
     result
@@ -46,6 +52,7 @@ module Enumerable
 
   def my_count
     return to_enum(:my_count) unless block_given?
+
     result = 0
     self.my_each { |i| result += 1 if yield(i) }
     result
@@ -53,6 +60,7 @@ module Enumerable
 
   def my_map(my_proc = nil)
     return to_enum(:my_map) unless block_given? || my_proc
+    
     arr = []
     if my_proc
       to_a.my_each { |val| arr << my_proc.call(val) }
