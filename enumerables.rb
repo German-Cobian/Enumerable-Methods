@@ -1,5 +1,4 @@
 # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-# rubocop:disable Metrics/ModuleLength 
 
 module Enumerable
   def my_each
@@ -91,7 +90,6 @@ module Enumerable
 end
 
 # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-# rubocop:enable Metrics/ModuleLength 
 
 puts "Output for my_each method"
 
