@@ -59,6 +59,8 @@ def my_count
 end
 
 def my_map
+  return to_enum(:my_map) unless block_given? 
+
   mapped = []
   self.length.times do |i|
     doubled = yield to_a[i]
@@ -100,7 +102,7 @@ p test_array.my_count
 
 puts "Output for my_map method"
 
-puts (test_array.my_map { |num| num * 2 })
+p test_array.my_map 
 
 end 
 
