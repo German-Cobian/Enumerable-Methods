@@ -1,5 +1,6 @@
 # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 # rubocop:disable Metrics/ModuleLength 
+
 module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
@@ -81,13 +82,16 @@ module Enumerable
       return 'input error'
     end
     memo
-  end
+  end  
 
   def multiply_els(arr)
     arr.my_inject(:*)
   end
 
 end
+
+# rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+# rubocop:enable Metrics/ModuleLength 
 
 puts "Output for my_each method"
 
@@ -131,6 +135,3 @@ p test_array.my_inject { |sum, i| sum + i }
 puts "Ouput of my inject test array"
 
 p arr.multiply_els(arr)
-
-# rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-# rubocop:enable Metrics/ModuleLength 
