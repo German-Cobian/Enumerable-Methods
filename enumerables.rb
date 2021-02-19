@@ -101,7 +101,7 @@ puts 'Output for my_each method'
 test_array = [1, 2, 3, 4, 5, 6, 7, 8]
 arr = [2, 4, 5]
 
-p test_array.my_each ({|num| puts num})
+p test_array.my_each {|num| puts num }
 
 puts 'Output for my_each_with_index method'
 
