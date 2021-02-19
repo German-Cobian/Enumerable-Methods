@@ -51,6 +51,8 @@ def my_none
 end
 
 def my_count
+  return to_enum(:my_count) unless block_given? 
+
   result = 0
   self.my_each { |i| result += 1 if yield(i) }
   result
@@ -90,11 +92,11 @@ p test_array.my_any { |num| num%9 == 0 }
 
 puts "Output for my_none method"
 
-p test_array.my_none 
+p test_array.my_none { |num| num%8 == 0 }
 
 puts "Output for my_count method"
 
-puts (test_array.my_count { |num| num.odd? })
+p test_array.my_count 
 
 puts "Output for my_map method"
 
