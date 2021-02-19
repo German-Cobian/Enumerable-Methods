@@ -11,6 +11,8 @@ def my_each
 end
 
 def my_each_with_index
+  return to_enum(:my_each_with_index) unless block_given?
+
   self.length.times do |i|
     yield to_a[i], i
   end
@@ -60,11 +62,11 @@ puts "Output for my_each method"
 
 test_array = [1, 2, 3, 4, 5, 6, 7, 8]
 
-p test_array.my_each 
+p test_array.my_each { |num| puts num }
 
 puts "Output for my_each_with_index method"
 
-test_array.my_each_with_index { |num, i| puts "#{i} : #{num}" }
+p test_array.my_each_with_index 
 
 puts "Output for my_select method"
 
