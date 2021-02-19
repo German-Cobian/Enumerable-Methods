@@ -58,16 +58,6 @@ def my_count
   result
 end
 
-# def my_map
-#   return to_enum(:my_map) unless block_given? 
-
-#   mapped = []
-#   self.length.times do |i|
-#     doubled = yield to_a[i]
-#     mapped.push(doubled)
-#   end
-#   mapped
-# end
 
 def my_map(my_proc = nil)
   return to_enum(:my_map) unless block_given? || my_proc
@@ -81,23 +71,37 @@ def my_map(my_proc = nil)
   arr
 end
 
-def my_inject(arg = (no_arg = true))
-  accu = self[0]
-  self.size.times do |i|
-    accu = yield(accu, self[i]) if no_arg
-    accu = accu.send(arg, self[i]) unless no_arg
+def my_inject(initial_1 = nil, initial_2 = nil)
+  if initial_1.is_a?(Symbol) && !initial_2
+    memo = to_a[0]
+    1.upto(to_a.length - 1) { |i| memo = memo.send(initial_1, to_a[i]) }
+  elsif !initial_1.is_a?(Symbol) && initial_2.is_a?(Symbol)
+    memo = initial_1
+    0.upto(to_a.length - 1) { |i| memo = memo.send(initial_2, to_a[i]) }
+  elsif block_given? && initial_1
+    memo = initial_1
+    to_a.my_each { |val| memo = yield(memo, val) } 
+  elsif block_given? && !initial_1
+    memo = to_a[0]
+    1.upto(to_a.length - 1) { |i| memo = yield(memo, to_a[i]) }
+  elsif !block_given? && !initial_1
+    raise LocalJumpError
+  else 
+    return 'input error'
   end
-  accu
+  memo
 end
 
-def multiply_els
-  self.my_inject { |sum, i| sum * i }
+
+def multiply_els(arr)
+  arr.my_inject(:*)
 end
 
     
 puts "Output for my_each method"
 
 test_array = [1, 2, 3, 4, 5, 6, 7, 8]
+arr = [2,4,5]
 
 p test_array.my_each { |num| puts num }
 
@@ -132,6 +136,10 @@ p test_array.my_map { |num| num * 2 }
 puts "Output for my_inject method"
 
 p test_array.my_inject { |sum, i| sum + i }
+
+puts "Ouput of my inject test array"
+
+p arr.multiply_els(arr)
 
 end 
 
