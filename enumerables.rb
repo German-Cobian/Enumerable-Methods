@@ -85,14 +85,6 @@ module Enumerable
   #   result
   # end
 
-  # def my_count
-  #   return to_enum(:my_count) unless block_given?
-
-  #   result = 0
-  #   my_each { |i| result += 1 if yield(i) }
-  #   result
-  # end
-
   def my_none?(param = nil)
     if !block_given? && !param
       to_a.my_each { |val| return false if val }
@@ -108,38 +100,57 @@ module Enumerable
     true
   end
 
-  # def my_map(my_proc = nil)
-  #   return to_enum(:my_map) unless block_given? || my_proc
+  # def my_count
+  #   return to_enum(:my_count) unless block_given?
 
-  #   arr = []
-  #   if my_proc
-  #     to_a.my_each { |val| arr << my_proc.call(val) }
-  #   else
-  #     to_a.my_each { |val| arr << yield(val) }
-  #   end
-  #   arr
+  #   result = 0
+  #   my_each { |i| result += 1 if yield(i) }
+  #   result
   # end
 
-  # def my_inject(initial_1 = nil, initial_2 = nil)
-  #   if initial_1.is_a?(Symbol) && !initial_2
-  #     memo = to_a[0]
-  #     1.upto(to_a.length - 1) { |i| memo = memo.send(initial_1, to_a[i]) }
-  #   elsif !initial_1.is_a?(Symbol) && initial_2.is_a?(Symbol)
-  #     memo = initial_1
-  #     0.upto(to_a.length - 1) { |i| memo = memo.send(initial_2, to_a[i]) }
-  #   elsif block_given? && initial_1
-  #     memo = initial_1
-  #     to_a.my_each { |val| memo = yield(memo, val) }
-  #   elsif block_given? && !initial_1
-  #     memo = to_a[0]
-  #     1.upto(to_a.length - 1) { |i| memo = yield(memo, to_a[i]) }
-  #   elsif !block_given? && !initial_1
-  #     raise LocalJumpError
-  #   else
-  #     return 'input error'
-  #   end
-  #   memo
-  # end
+  def my_count(param = nil)
+    counter = 0
+    if block_given?
+      to_a.my_each { |val| counter += 1 if yield(val) }
+    elsif para
+      to_a.my_each { |val| counter += 1 if para == val }
+    else counter = to_a.length
+    end
+    counter
+  end
+
+  def my_map(my_proc = nil)
+    return to_enum(:my_map) unless block_given? || my_proc
+
+    arr = []
+    if my_proc
+      to_a.my_each { |val| arr << my_proc.call(val) }
+    else
+      to_a.my_each { |val| arr << yield(val) }
+    end
+    arr
+  end
+
+  def my_inject(initial_1 = nil, initial_2 = nil)
+    if initial_1.is_a?(Symbol) && !initial_2
+      memo = to_a[0]
+      1.upto(to_a.length - 1) { |i| memo = memo.send(initial_1, to_a[i]) }
+    elsif !initial_1.is_a?(Symbol) && initial_2.is_a?(Symbol)
+      memo = initial_1
+      0.upto(to_a.length - 1) { |i| memo = memo.send(initial_2, to_a[i]) }
+    elsif block_given? && initial_1
+      memo = initial_1
+      to_a.my_each { |val| memo = yield(memo, val) }
+    elsif block_given? && !initial_1
+      memo = to_a[0]
+      1.upto(to_a.length - 1) { |i| memo = yield(memo, to_a[i]) }
+    elsif !block_given? && !initial_1
+      raise LocalJumpError
+    else
+      return 'input error'
+    end
+    memo
+  end
 
 #   def multiply_els(arr)
 #     arr.my_inject(:*)
