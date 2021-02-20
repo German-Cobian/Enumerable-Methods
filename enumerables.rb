@@ -93,6 +93,21 @@ module Enumerable
   #   result
   # end
 
+  def my_none?(param = nil)
+    if !block_given? && !param
+      to_a.my_each { |val| return false if val }
+    elsif param.is_a?(Regexp)
+      to_a.my_each { |val| return false if param.match(val) }
+    elsif param.is_a?(Class)
+      to_a.my_each { |val| return false if val.is_a?(param) }
+    elsif param
+      to_a.my_each { |val| return false if val == param }
+    else 
+      to_a.my_each { |val| return false if yield(val) }
+    end
+    true
+  end
+
   # def my_map(my_proc = nil)
   #   return to_enum(:my_map) unless block_given? || my_proc
 
@@ -162,6 +177,8 @@ module Enumerable
 p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_all? {|n| n > 1}
 
 p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_any? {|n| n > 599}
+
+p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_none? {|n| n > 1}
 
 
 
