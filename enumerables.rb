@@ -12,7 +12,7 @@ module Enumerable
 
   def my_each_with_index
     return to_enum(:my_each_with_index) unless block_given?
-    
+
     (to_a.length).times do |i|   
       yield(to_a[i], i)
     end
@@ -26,14 +26,6 @@ module Enumerable
     to_a.my_each { |i| result << i if yield(i) }
     result
   end
-
-  # def my_all
-  #   return to_enum(:my_all) unless block_given?
-
-  #   result = true
-  #   my_each { |i| result = false unless yield(i) }
-  #   result
-  # end
 
   def my_all?(param = nil)
     if !block_given? && !param
@@ -66,14 +58,6 @@ module Enumerable
     end
     output
   end
-
-  # def my_any
-  #   return to_enum(:my_any) unless block_given?
-
-  #   result = false
-  #   my_each { |i| result = true if yield(i) }
-  #   result
-  # end
 
   def my_any?(param = nil)
     if !block_given? && !para
@@ -183,18 +167,18 @@ end
 # p (1..6).my_each_with_index {|n, i| puts "#{i},#{n}"}
 
 
-p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_all? {|n| n > 1}
+# p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_all? {|n| n > 1}
 
-p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_any? {|n| n > 599}
+# p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_any? {|n| n > 599}
 
-p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_none? {|n| n > 1}
+# p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_none? {|n| n > 1}
 
-p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_count {|n| n > 5}
+# # p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_count {|n| n > 5}
 
-p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_count {|n| n > 12}
+# p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_count {|n| n > 12}
 
   arr1 = [1,2,3,4,5]
-p arr1.multiply_els(arr1)
+# p arr1.multiply_els(arr1)
 
 
 
