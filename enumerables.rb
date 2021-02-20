@@ -152,10 +152,11 @@ module Enumerable
     memo
   end
 
-#   def multiply_els(arr)
-#     arr.my_inject(:*)
-#   end
+  def multiply_els(arr)
+    arr.my_inject(:*)
   end
+
+end
 
 # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
@@ -191,6 +192,12 @@ p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_any? {|n| n > 599}
 
 p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_none? {|n| n > 1}
 
+p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_count {|n| n > 5}
+
+p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_count {|n| n > 12}
+
+  arr1 = [1,2,3,4,5]
+p arr1.multiply_els(arr1)
 
 
 
