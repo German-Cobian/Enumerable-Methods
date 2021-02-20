@@ -62,6 +62,21 @@ module Enumerable
   #   result
   # end
 
+  def my_any?(param = nil)
+    if !block_given? && !para
+      to_a.my_each { |val| return true if val }
+    elsif param.is_a?(Class)
+      to_a.my_each { |val| return true if val.is_a?(param) }
+    elsif param.is_a?(Regexp)
+      to_a.my_each { |val| return true if param.match(val) }
+    elsif param
+      to_a.my_each { |val| return true if val == param }
+    else
+      to_a.my_each { |val| return true if yield(val) }
+    end
+    false
+  end
+
   # def my_none
   #   return to_enum(:my_none) unless block_given?
 
@@ -143,8 +158,12 @@ module Enumerable
 
 # p (1..6).my_each_with_index {|n, i| puts "#{i},#{n}"}
 
+
 p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_all? {|n| n > 1}
 
-my_all?(arr)
+p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_any? {|n| n > 599}
+
+
+
 
 
