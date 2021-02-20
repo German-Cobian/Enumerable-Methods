@@ -1,5 +1,4 @@
-# rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-
+# rubocop:disable Style/CaseEquality, Metrics/ModuleLenght, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
@@ -42,23 +41,6 @@ module Enumerable
     true
   end
 
-  def my_all?(param = nil)
-    output = true
-  
-    if block_given?
-      to_a.my_each { |item| return false unless yield(item) }
-    elsif !block_given? && param.nil?
-      to_a.my_each { |item| return false unless item }
-    elsif param.is_a?(Regexp)
-      to_a.my_each { |item| return false unless param.match?(item) }
-    elsif param.is_a?(Class)
-      to_a.my_each { |item| return false unless item.is_a?(param) }
-    else
-      output = uniq.length == 1
-    end
-    output
-  end
-
   def my_any?(param = nil)
     if !block_given? && !para
       to_a.my_each { |val| return true if val }
@@ -94,7 +76,7 @@ module Enumerable
     if block_given?
       to_a.my_each { |val| counter += 1 if yield(val) }
     elsif para
-      to_a.my_each { |val| counter += 1 if para == val }
+      to_a.my_each { |val| counter += 1 if param == val }
     else counter = to_a.length
     end
     counter
@@ -138,5 +120,4 @@ module Enumerable
   end
 
 end
-
-# rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+# rubocop:enable Style/CaseEauality, Metrics/ModuleLenght, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
