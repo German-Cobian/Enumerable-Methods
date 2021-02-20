@@ -4,7 +4,7 @@ module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
 
-    (to_a.length).times do |i| 
+    to_a.length.times do |i|
       yield(to_a[i])
     end
     self
@@ -13,7 +13,7 @@ module Enumerable
   def my_each_with_index
     return to_enum(:my_each_with_index) unless block_given?
 
-    (to_a.length).times do |i|   
+    to_a.length.times do |i|
       yield(to_a[i], i)
     end
     self
@@ -83,7 +83,7 @@ module Enumerable
       to_a.my_each { |val| return false if val.is_a?(param) }
     elsif param
       to_a.my_each { |val| return false if val == param }
-    else 
+    else
       to_a.my_each { |val| return false if yield(val) }
     end
     true
@@ -140,46 +140,3 @@ module Enumerable
 end
 
 # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-
-#  puts "my_each test data"
-
-# arr = [3,2,4,5,6,7,8,9,12,13,72,15]
-
-# p arr.my_each {|n| puts n}
-
-# p [3,2,4,5,6,7,8,9,12,13,72,15].my_each
-
-# p (1..6).my_each
-
-# p (1..6).my_each {|n| puts "#{n} times"}
-
-
-# puts "my_each_with_index test data"
-
-# arr = [3,2,4,5,6,7,8,9,12,13,72,15]
-
-# p arr.my_each_with_index {|num, idx| puts "#{idx} : #{num}"}
-
-# p [3,2,4,5,6,7,8,9,12,13,72,15].my_each_with_index
-
-# p (1..6).my_each_with_index
-
-# p (1..6).my_each_with_index {|n, i| puts "#{i},#{n}"}
-
-
-# p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_all? {|n| n > 1}
-
-# p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_any? {|n| n > 599}
-
-# p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_none? {|n| n > 1}
-
-# # p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_count {|n| n > 5}
-
-# p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_count {|n| n > 12}
-
-  arr1 = [1,2,3,4,5]
-# p arr1.multiply_els(arr1)
-
-
-
-
