@@ -23,13 +23,13 @@ module Enumerable
     self
   end
 
-  # def my_select
-  #   return to_enum(:my_select) unless block_given?
+  def my_select
+    return to_enum(:my_select) unless block_given?
 
-  #   result = []
-  #   to_a.my_each { |i| result << i if yield(i) }
-  #   result
-  # end
+    result = []
+    to_a.my_each { |i| result << i if yield(i) }
+    result
+  end
 
   # def my_all
   #   return to_enum(:my_all) unless block_given?
@@ -38,6 +38,21 @@ module Enumerable
   #   my_each { |i| result = false unless yield(i) }
   #   result
   # end
+
+  def my_all?(param = nil)
+    if !block_given? && !param
+      to_a.my_each { |val| return false unless val }
+    elsif param.is_a?(Class)
+      to_a.my_each { |val| return false unless val.is_a?(param) }
+    elsif param.is_a?(Regexp)
+      to_a.my_each { |val| return false unless param.match(val) }
+    elsif param
+      to_a.my_each { |val| return false unless val == param }
+    else
+      to_a.my_each { |val| return false unless yield(val) }
+    end
+    true
+  end
 
   # def my_any
   #   return to_enum(:my_any) unless block_given?
@@ -113,19 +128,23 @@ module Enumerable
 
 # p (1..6).my_each
 
-p (1..6).my_each {|n| puts "#{n} times"}
+# p (1..6).my_each {|n| puts "#{n} times"}
 
 
-puts "my_each_with_index test data"
+# puts "my_each_with_index test data"
 
-arr = [3,2,4,5,6,7,8,9,12,13,72,15]
+# arr = [3,2,4,5,6,7,8,9,12,13,72,15]
 
-p arr.my_each_with_index {|num, idx| puts "#{idx} : #{num}"}
+# p arr.my_each_with_index {|num, idx| puts "#{idx} : #{num}"}
 
-p [3,2,4,5,6,7,8,9,12,13,72,15].my_each_with_index
+# p [3,2,4,5,6,7,8,9,12,13,72,15].my_each_with_index
 
-p (1..6).my_each_with_index
+# p (1..6).my_each_with_index
 
-p (1..6).my_each_with_index {|n, i| puts "#{i},#{n}"}
+# p (1..6).my_each_with_index {|n, i| puts "#{i},#{n}"}
+
+p arr = [3,2,4,5,6,7,8,9,12,13,72,15].my_all? {|n| n > 1}
+
+my_all?(arr)
 
 
