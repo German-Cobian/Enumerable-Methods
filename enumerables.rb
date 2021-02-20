@@ -4,8 +4,6 @@ module Enumerable
   def my_each
     return to_enum(:my_each) unless block_given?
 
-    # length.times do |i|
-    # 0.upto(to_a.length - 1) do |i|
     (to_a.length).times do |i| 
       yield(to_a[i])
     end
@@ -14,9 +12,7 @@ module Enumerable
 
   def my_each_with_index
     return to_enum(:my_each_with_index) unless block_given?
-
-    # length.times do |i|
-    # 0.upto(to_a.length - 1) do |i|
+    
     (to_a.length).times do |i|   
       yield(to_a[i], i)
     end
@@ -54,6 +50,23 @@ module Enumerable
     true
   end
 
+  def my_all?(param = nil)
+    output = true
+  
+    if block_given?
+      to_a.my_each { |item| return false unless yield(item) }
+    elsif !block_given? && param.nil?
+      to_a.my_each { |item| return false unless item }
+    elsif param.is_a?(Regexp)
+      to_a.my_each { |item| return false unless param.match?(item) }
+    elsif param.is_a?(Class)
+      to_a.my_each { |item| return false unless item.is_a?(param) }
+    else
+      output = uniq.length == 1
+    end
+    output
+  end
+
   # def my_any
   #   return to_enum(:my_any) unless block_given?
 
@@ -77,14 +90,6 @@ module Enumerable
     false
   end
 
-  # def my_none
-  #   return to_enum(:my_none) unless block_given?
-
-  #   result = true
-  #   my_each { |i| result = false if yield(i) }
-  #   result
-  # end
-
   def my_none?(param = nil)
     if !block_given? && !param
       to_a.my_each { |val| return false if val }
@@ -99,14 +104,6 @@ module Enumerable
     end
     true
   end
-
-  # def my_count
-  #   return to_enum(:my_count) unless block_given?
-
-  #   result = 0
-  #   my_each { |i| result += 1 if yield(i) }
-  #   result
-  # end
 
   def my_count(param = nil)
     counter = 0
