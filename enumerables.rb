@@ -113,7 +113,7 @@ module Enumerable
 
 # p (1..6).my_each
 
-# p (1..6).my_each {|n| puts "#{n} times"}
+p (1..6).my_each {|n| puts "#{n} times"}
 
 
 puts "my_each_with_index test data"
