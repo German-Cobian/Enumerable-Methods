@@ -1,10 +1,12 @@
 require './enumerables.rb'
 
 describe 'Enumerables' do
-  let(:array) { %w[germain julius cobian mih ndim] }
+  let(:str_array) { %w[germain julius cobian mih ndim] }
   let(:num_array) { [1,2,3,4,5] }
-  let(:num_array_clone) { num_array.clone }
   let(:num_array2) { [7,5,3,5,2] }
+  let(:mixed_array) { ['dog', 5, 'song', 99, 'git', 54]}
+  let(:num_array_clone) { num_array.clone }
+
 
   describe '#my_each' do
 
@@ -12,13 +14,15 @@ describe 'Enumerables' do
     expect(num_array.my_each { |elem| (elem * 5)}).to eq(num_array.each { |i| i.send('*', 5)})
     end
 
+    it 'does not mutate the original array' do
+      expect(num_array.my_each{|elt| elt + 1}).to eq(num_array_clone)
+    end
+
+
     it "returns an enumerator if no block is given " do
       expect(num_array.my_each).to be_an(Enumerator)
     end
 
-    it 'does not mutate the original array' do
-      expect(num_array.my_each{|elt| elt + 1}).to eq(num_array_clone)
-    end
   end
 
 
@@ -46,13 +50,14 @@ describe 'Enumerables' do
       expect(range.my_select(&block)).to eq(range.select(&block))
     end
     
+    it 'does not mutate the original array'do
+      expect(num_array.my_select {|element| element + 2} ).to eq(num_array_clone)
+    end
+
     it 'returns an enumerator if no block is given' do
       expect(range.my_select).to be_an(Enumerator)
     end
 
-    it 'does not mutate the original array'do
-      expect(num_array.my_select {|element| element + 2} ).to eq(num_array_clone)
-    end
   end
   
   describe '#my_all?' do
@@ -68,28 +73,37 @@ describe 'Enumerables' do
     end
 
     it 'does not mutate the original array' do
-      expect(num_array.my_all?{|num| num + 3}).to eq(num_array_clone)
+      num_array.my_all? {|num| num + 3}
+      expect(num_array).to eq(num_array_clone)
     end
     
+    context 'when argument is a class' do
+      it 'returns true if all the elements belong to the class'do
+      expect(str_array.my_all?(String)).to be str_array.all?(String)
+      end
+
+      it 'returns false if not all elements belong to the class' do
+        expect(mixed_array.my_all?(String)).to be mixed_array.all?(String)
+      end
+    end
+
     context "when no block or argument is given" do
       it 'returns true if all elements of the array evaluate to true' do
         expect(num_array.my_all?).to be num_array.all?
       end      
 
       it 'returns false if array contains nil' do
-        expect([nil, true, 99].my_all?).to eql(false)
+        num_array << nil
+        expect(num_array.my_all?).to be num_array.all?
       end
     end
-
-
-
     
     context 'when a regex is passed as an argument'do
       it 'returns true if the elements contains the regex pattern' do
-        expect(array.my_all?(/i/)).to eq(true)
+        expect(str_array.my_all?(/i/)).to eq(true)
       end
       it 'returns false if the elements do not contain the regex pattern' do
-        expect(array.my_all?(/u/)).to eq(false)
+        expect(str_array.my_all?(/u/)).to eq(false)
       end
     end
   end
