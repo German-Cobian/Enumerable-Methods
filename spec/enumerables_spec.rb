@@ -39,4 +39,16 @@ describe 'Enumerables' do
     end
   end
 
+  describe '#my_select' do
+    let(:block) {proc {|element| element > 3}}
+    let(:range) { Range.new(0,9) }
+    it 'returns an enumerator with elements for which the given block evaluates to true' do
+      expect(range.my_select(&block)).to eq(range.select(&block))
+    end
+    
+    it 'returns an enumerator if no block is given' do
+      expect(range.my_select).to be_an(Enumerator)
+    end
+  end
+  
 end
