@@ -66,16 +66,21 @@ describe 'Enumerables' do
     it 'returns false if the block never evaluates to true' do
       expect(num_array.my_all?(&str_block)).to eq(num_array.all?(&str_block))
     end
+
+    it 'does not mutate the original array' do
+      expect(num_array.my_all?{|num| num + 3}).to eq(num_array_clone)
+    end
     
     context "when no block or argument is given" do
       it 'returns true if all elements of the array evaluate to true' do
         expect(num_array.my_all?).to be num_array.all?
-      end
+      end      
 
       it 'returns false if array contains nil' do
         expect([nil, true, 99].my_all?).to eql(false)
       end
     end
+
 
 
     
