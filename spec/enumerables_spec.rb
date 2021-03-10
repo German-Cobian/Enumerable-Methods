@@ -6,6 +6,7 @@ describe 'Enumerables' do
   let(:num_array2) { [7,5,3,5,2] }
   let(:mixed_array) { ['dog', 5, 'song', 99, 'git', 54]}
   let(:num_array_clone) { num_array.clone }
+  let(:range) { Range.new(1, 10) }
 
 
   describe '#my_each' do
@@ -241,6 +242,25 @@ describe 'Enumerables' do
       it 'does to mutate the original array' do
         num_array.my_inject { |elem| elem + 4 }
         expect(num_array).to eq(num_array_clone) 
+      end
+
+
+      context 'when a symbol is specified with an initial value' do
+        it 'combines array elements applying the symbol to inject method' do
+          expect(num_array.my_inject(2, :+)).to eq num_array.inject(2, :+)
+        end
+        it 'combines range elements applying the symbol to inject method' do
+          expect(range.my_inject(2, :+)).to eq range.inject(2, :+)
+        end
+      end
+
+      context 'when symbol is given without starting value' do
+        it 'combines all the elements applying the symbols to inject method' do
+          expect(num_array.my_inject(:+)).to eq num_array.inject(:+)
+        end
+        it 'combines range elements applying the symbol to inject method' do
+          expect(range.my_inject(:+)).to eq range.inject(:+)
+        end
       end
     end
 end
