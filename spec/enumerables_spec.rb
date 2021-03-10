@@ -18,7 +18,6 @@ describe 'Enumerables' do
       expect(num_array.my_each{|elt| elt + 1}).to eq(num_array_clone)
     end
 
-
     it "returns an enumerator if no block is given " do
       expect(num_array.my_each).to be_an(Enumerator)
     end
@@ -216,6 +215,22 @@ describe 'Enumerables' do
       it 'does not mutate the original array' do
         num_array.my_count { |num| num + 1 }
         expect(num_array).to eq(num_array_clone) 
+      end
+    end
+
+    describe '#my_map' do
+      let(:block) { proc { |elem| elem + 2 }}
+      it "returns a new array after applying a block on every element of the original array" do
+        expect(num_array.my_map(&block)).to eq(num_array.map(&block))
+      end
+
+      it 'returns an enumerator if no block is given' do
+        expect(num_array.my_map).to be_an(Enumerator)
+      end
+
+      it 'does not mutate the original array' do
+        num_array.my_map { |elem| elem + 2 } 
+        expect(num_array).to eq(num_array.clone)
       end
     end
 end
