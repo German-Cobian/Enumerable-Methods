@@ -204,4 +204,18 @@ describe 'Enumerables' do
         expect(str_array.my_none?(/h/)).to eq(false)
       end
     end
+
+    describe '#my_count' do
+      let(:block) {proc {|elt| elt < 2}}
+      it 'returns the number of elements in an array that are equal to an argument that is passed on to it' do
+        expect(num_array2.my_count(5)).to eq num_array2.count(5) 
+      end
+      it 'counts the number of elements in an array that evaluates to true in a given block' do
+        expect(num_array.my_count(&block)).to eq num_array.count(&block)
+      end
+      it 'does not mutate the original array' do
+        num_array.my_count { |num| num + 1 }
+        expect(num_array).to eq(num_array_clone) 
+      end
+    end
 end

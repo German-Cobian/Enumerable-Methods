@@ -75,7 +75,7 @@ module Enumerable
     counter = 0
     if block_given?
       to_a.my_each { |val| counter += 1 if yield(val) }
-    elsif para
+    elsif param
       to_a.my_each { |val| counter += 1 if param == val }
     else counter = to_a.length
     end
