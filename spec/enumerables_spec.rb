@@ -19,7 +19,16 @@ describe 'Enumerables' do
     it 'does not mutate the original array' do
       expect(num_array.my_each{|elt| elt + 1}).to eq(num_array_clone)
     end
-
-    
   end
+
+
+  describe 'my_each_with_index' do
+  
+    it 'works identically to ruby\'s #each_with_index method when a block is given' do
+    expect(num_array.my_each_with_index { |elem, i| elem + i }).to eq(num_array.each_with_index do |elem, index|
+      elem + index
+    end)
+  end
+  
+
 end
