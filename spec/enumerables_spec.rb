@@ -146,6 +146,15 @@ describe 'Enumerables' do
       end
     end
 
+    context 'when a regex is passed as an argument'do
+      it 'returns true if at least one of the elements contains the regex pattern' do
+        expect(str_array.my_any?(/h/)).to eq(true)
+      end
+      it 'returns false if none of the elements contain the regex pattern' do
+        expect(str_array.my_any?(/x/)).to eq(false)
+      end
+    end
+
   end
 
 
