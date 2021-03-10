@@ -135,6 +135,17 @@ describe 'Enumerables' do
       end
     end
 
+    context "when no block or argument is given" do
+      it 'returns true if any of the elements of the array evaluate to true' do
+        expect(num_array.my_any?).to be num_array.any?
+      end      
+
+      it 'returns false if none of the elements in the array evaluates to true' do
+        nil_array = [nil, nil, false]
+        expect(nil_array.my_any?).to be nil_array.any?
+      end
+    end
+
   end
 
 
