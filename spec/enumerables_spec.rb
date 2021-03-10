@@ -30,8 +30,19 @@ describe 'Enumerables' do
     end)
   end
 
+
   it 'does not mutate the original array' do
     expect(num_array.my_each_with_index{|elt, index| puts elt + index}).to eq(num_array_clone)
+  end
+ end 
+
+  describe '#my_select' do
+    let(:block) {proc {|element| element > 3}}
+    let(:range) { Range.new(0,9) }
+    it 'returns an enumerator with elements for which the given block evaluates to true' do
+      expect(range.my_select(&block)).to eq(range.select(&block))
+    end
+    
   end
   
 
