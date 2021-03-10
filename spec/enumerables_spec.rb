@@ -195,4 +195,13 @@ describe 'Enumerables' do
       expect(num_array.my_none?).to be num_array.none?
     end
   end
+
+  context 'when a regex is passed as an argument'do
+      it 'returns true if none of the elements contains the regex pattern' do
+        expect(str_array.my_none?(/x/)).to eq(true)
+      end
+      it 'returns false if at least one of the elements contain the regex pattern' do
+        expect(str_array.my_none?(/h/)).to eq(false)
+      end
+    end
 end
