@@ -66,6 +66,19 @@ describe 'Enumerables' do
     it 'returns false if the block never evaluates to true' do
       expect(num_array.my_all?(&str_block)).to eq(num_array.all?(&str_block))
     end
+    
+    context "when no block or argument is given" do
+      it 'returns true if all elements of the array evaluate to true' do
+        expect(num_array.my_all?).to be num_array.all?
+      end
+
+      it 'returns false if array contains nil' do
+        expect([nil, true, 99].my_all?).to eql(false)
+      end
+    end
+
+
+    
     context 'when a regex is passed as an argument'do
       it 'returns true if the elements contains the regex pattern' do
         expect(array.my_all?(/i/)).to eq(true)
