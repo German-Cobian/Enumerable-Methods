@@ -23,16 +23,20 @@ describe 'Enumerables' do
 
 
   describe 'my_each_with_index' do
-  
-    it 'works identically to ruby\'s #each_with_index method when a block is given' do
-    expect(num_array.my_each_with_index { |elem, i| puts elem + i }).to eq(num_array.each_with_index do |elem, index|
-      puts elem + index
-    end)
-  end
 
-  it 'does not mutate the original array' do
-    expect(num_array.my_each_with_index{|elt, index| puts elt + index}).to eq(num_array_clone)
-  end
+    it 'works identically to ruby\'s #each_with_index method when a block is given' do
+    expect(num_array.my_each_with_index { |a, i| a + i }).to eq(num_array.each_with_index do |elem, index|
+      puts elem + index
+      end)
+    end
   
+    it 'does not mutate the original array' do
+      expect(num_array.my_each_with_index{|elt, index| puts elt + index}).to eq(num_array_clone)
+    end
+
+    it 'returns and enumerable if no block is given' do
+      expect(num_array.my_each_with_index).to be_an(Enumerator)
+    end
+  end
 
 end
