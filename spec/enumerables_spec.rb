@@ -1,7 +1,7 @@
 require './enumerables.rb'
 
 describe 'Enumerables' do
-  let(:array) { %w[german julius cobian mih ndim] }
+  let(:array) { %w[germain julius cobian mih ndim] }
   let(:num_array) { [1,2,3,4,5] }
   let(:num_array_clone) { num_array.clone }
   let(:num_array2) { [7,5,3,5,2] }
@@ -65,6 +65,14 @@ describe 'Enumerables' do
 
     it 'returns false if the block never evaluates to true' do
       expect(num_array.my_all?(&str_block)).to eq(num_array.all?(&str_block))
+    end
+    context 'when a regex is passed as an argument'do
+      it 'returns true if the elements contains the regex pattern' do
+        expect(array.my_all?(/i/)).to eq(true)
+      end
+      it 'returns false if the elements do not contain the regex pattern' do
+        expect(array.my_all?(/u/)).to eq(false)
+      end
     end
   end
 
