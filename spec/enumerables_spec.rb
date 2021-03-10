@@ -233,4 +233,14 @@ describe 'Enumerables' do
         expect(num_array).to eq(num_array.clone)
       end
     end
+
+    describe '#my_inject' do
+      it 'raises a LocalJumpError when no block or argument is given' do
+        expect { num_array.my_inject }.to raise_error(LocalJumpError)
+      end
+      it 'does to mutate the original array' do
+        num_array.my_inject { |elem| elem + 4 }
+        expect(num_array).to eq(num_array_clone) 
+      end
+    end
 end
