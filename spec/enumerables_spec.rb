@@ -16,6 +16,10 @@ describe 'Enumerables' do
       expect(num_array.my_each).to be_an(Enumerator)
     end
 
+    it 'does not mutate the original array' do
+      expect(num_array.my_each{|elt| elt + 1}).to eq(num_array_clone)
+    end
+
     
   end
 end
