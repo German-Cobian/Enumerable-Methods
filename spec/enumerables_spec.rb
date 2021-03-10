@@ -55,4 +55,18 @@ describe 'Enumerables' do
     end
   end
   
+  describe '#my_all?' do
+    let(:str_block) { proc { |str| str.is_a? String } }
+    let(:int_block) { proc { |int| int.is_a? Integer }}
+
+    it 'returns true if the block never evaluates to false' do
+      expect(num_array.my_all?(&int_block)).to eq(num_array.all?(&int_block))
+    end
+
+    it 'returns false if the block never evaluates to true' do
+      expect(num_array.my_all?(&str_block)).to eq(num_array.all?(&str_block))
+    end
+  end
+
+
 end
