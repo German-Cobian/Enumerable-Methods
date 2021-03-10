@@ -49,6 +49,10 @@ describe 'Enumerables' do
     it 'returns an enumerator if no block is given' do
       expect(range.my_select).to be_an(Enumerator)
     end
+
+    it 'does not mutate the original array'do
+      expect(num_array.my_select {|element| element + 2} ).to eq(num_array_clone)
+    end
   end
   
 end
