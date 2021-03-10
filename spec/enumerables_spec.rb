@@ -184,4 +184,15 @@ describe 'Enumerables' do
       expect(mixed_array.my_none?(String)).to be mixed_array.none?(String)
     end
   end
+
+  context "when no block or argument is given" do
+    it 'returns true if none of the elements of the array evaluate to true' do
+      nil_array = [nil, nil, false]
+      expect(nil_array.my_none?).to be nil_array.none?
+    end      
+
+    it 'returns false if at least one of the elements in the array evaluates to true' do
+      expect(num_array.my_none?).to be num_array.none?
+    end
+  end
 end
