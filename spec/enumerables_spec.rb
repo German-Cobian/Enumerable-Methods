@@ -175,5 +175,13 @@ describe 'Enumerables' do
     end
   end
 
+  context 'when argument is a class' do
+    it 'returns true if none of the elements belongs to the class'do
+    expect(num_array.my_none?(String)).to be num_array.none?(String)
+    end
 
+    it 'returns false if at least one of the elements belong to the class' do
+      expect(mixed_array.my_none?(String)).to be mixed_array.none?(String)
+    end
+  end
 end
