@@ -108,5 +108,23 @@ describe 'Enumerables' do
     end
   end
 
+  describe '#my_any?' do
+    let(:str_block) { proc { |str| str.is_a? String } }
+    let(:int_block) { proc { |int| int.is_a? Integer }} 
+
+    it 'returns true if the block evaluates to true at least once' do
+      expect(mixed_array.my_any?(&int_block)).to eq(mixed_array.any?(&int_block))
+    end
+
+    it 'returns false if the block never evaluates to true' do
+      expect(num_array.my_any?(&str_block)).to eq(num_array.any?(&str_block))
+    end
+
+    it 'does not mutate the original array' do
+      num_array.my_any? {|num| num + 3}
+      expect(num_array).to eq(num_array_clone)
+    end
+  end
+
 
 end
