@@ -42,7 +42,7 @@ module Enumerable
   end
 
   def my_any?(param = nil)
-    if !block_given? && !para
+    if !block_given? && !param
       to_a.my_each { |val| return true if val }
     elsif param.is_a?(Class)
       to_a.my_each { |val| return true if val.is_a?(param) }

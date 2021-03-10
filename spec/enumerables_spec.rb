@@ -124,6 +124,17 @@ describe 'Enumerables' do
       num_array.my_any? {|num| num + 3}
       expect(num_array).to eq(num_array_clone)
     end
+
+    context 'when argument is a class' do
+      it 'returns true if at least one element belongs to the class'do
+      expect(mixed_array.my_any?(String)).to be mixed_array.any?(String)
+      end
+
+      it 'returns false if none of the elements belong to the class' do
+        expect(num_array.my_any?(String)).to be num_array.any?(String)
+      end
+    end
+
   end
 
 
