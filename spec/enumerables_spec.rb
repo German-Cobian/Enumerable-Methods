@@ -27,12 +27,12 @@ describe 'Enumerables' do
   describe 'my_each_with_index' do
     it 'works identically to ruby\'s #each_with_index method when a block is given' do
       expect(num_array.my_each_with_index { |a, i| a + i }).to eq(num_array.each_with_index do |elem, index|
-                                                                    puts elem + index
+                                                                     elem + index
                                                                   end)
     end
 
     it 'does not mutate the original array' do
-      expect(num_array.my_each_with_index { |elt, index| puts elt + index }).to eq(num_array_clone)
+      expect(num_array.my_each_with_index { |elt, index| elt + index }).to eq(num_array_clone)
     end
 
     it 'returns and enumerable if no block is given' do
@@ -103,8 +103,6 @@ describe 'Enumerables' do
   end
 
   describe '#my_any?' do
-    # let(:str_block) { proc { |str| str.is_a? String } }
-    # let(:int_block) { proc { |int| int.is_a? Integer } }
 
     it 'returns true if the block evaluates to true at least once' do
       expect(mixed_array.my_any?(&int_block)).to eq(mixed_array.any?(&int_block))
@@ -151,8 +149,6 @@ describe 'Enumerables' do
   end
 
   describe '#my_none' do
-    # let(:str_block) { proc { |str| str.is_a? String } }
-    # let(:int_block) { proc { |int| int.is_a? Integer } }
 
     it 'returns true if the block never evaluates to true' do
       expect(str_array.my_none?(&int_block)).to eq(str_array.none?(&int_block))
