@@ -27,7 +27,7 @@ describe 'Enumerables' do
   describe 'my_each_with_index' do
     it 'works identically to ruby\'s #each_with_index method when a block is given' do
       expect(num_array.my_each_with_index { |a, i| a + i }).to eq(num_array.each_with_index do |elem, index|
-                                                                     elem + index
+                                                                    elem + index
                                                                   end)
     end
 
@@ -57,7 +57,6 @@ describe 'Enumerables' do
   end
 
   describe '#my_all?' do
-
     it 'returns true if the block never evaluates to false' do
       expect(num_array.my_all?(&int_block)).to eq(num_array.all?(&int_block))
     end
@@ -103,7 +102,6 @@ describe 'Enumerables' do
   end
 
   describe '#my_any?' do
-
     it 'returns true if the block evaluates to true at least once' do
       expect(mixed_array.my_any?(&int_block)).to eq(mixed_array.any?(&int_block))
     end
@@ -149,7 +147,6 @@ describe 'Enumerables' do
   end
 
   describe '#my_none' do
-
     it 'returns true if the block never evaluates to true' do
       expect(str_array.my_none?(&int_block)).to eq(str_array.none?(&int_block))
     end
