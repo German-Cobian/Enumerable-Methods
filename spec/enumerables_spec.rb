@@ -7,6 +7,8 @@ describe 'Enumerables' do
   let(:mixed_array) { ['dog', 5, 'song', 99, 'git', 54] }
   let(:num_array_clone) { num_array.clone }
   let(:range) { Range.new(1, 10) }
+  let(:str_block) { proc { |str| str.is_a? String } }
+  let(:int_block) { proc { |int| int.is_a? Integer } }
 
   describe '#my_each' do
     it "works identically to ruby\'s #each method when a block is given" do
@@ -55,8 +57,6 @@ describe 'Enumerables' do
   end
 
   describe '#my_all?' do
-    let(:str_block) { proc { |str| str.is_a? String } }
-    let(:int_block) { proc { |int| int.is_a? Integer } }
 
     it 'returns true if the block never evaluates to false' do
       expect(num_array.my_all?(&int_block)).to eq(num_array.all?(&int_block))
@@ -103,8 +103,8 @@ describe 'Enumerables' do
   end
 
   describe '#my_any?' do
-    let(:str_block) { proc { |str| str.is_a? String } }
-    let(:int_block) { proc { |int| int.is_a? Integer } }
+    # let(:str_block) { proc { |str| str.is_a? String } }
+    # let(:int_block) { proc { |int| int.is_a? Integer } }
 
     it 'returns true if the block evaluates to true at least once' do
       expect(mixed_array.my_any?(&int_block)).to eq(mixed_array.any?(&int_block))
@@ -151,8 +151,8 @@ describe 'Enumerables' do
   end
 
   describe '#my_none' do
-    let(:str_block) { proc { |str| str.is_a? String } }
-    let(:int_block) { proc { |int| int.is_a? Integer } }
+    # let(:str_block) { proc { |str| str.is_a? String } }
+    # let(:int_block) { proc { |int| int.is_a? Integer } }
 
     it 'returns true if the block never evaluates to true' do
       expect(str_array.my_none?(&int_block)).to eq(str_array.none?(&int_block))
