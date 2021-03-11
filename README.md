@@ -57,7 +57,7 @@ In the project we have replicated our own version of the following methods;
       rspec-mocks 3.10.2
       rspec-support 3.10.2
 - The rspec gem comes packed with all we need to get started including the 5 gems listed above.
-- Navigagte into the AdvancedBuildingBlocks-Enumerables folder
+- Navigate into the AdvancedBuildingBlocks-Enumerables folder
     cd AdvancedBuildingBlocks-Enumerables
 - Run the following command to initialize Rspec
     rspec --init
