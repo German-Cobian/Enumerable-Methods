@@ -1,4 +1,4 @@
-require './enumerables.rb'
+require_relative '../enumerables.rb'
 
 describe 'Enumerables' do
   let(:str_array) { %w[germain julius cobian mih ndim] }
