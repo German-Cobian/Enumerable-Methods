@@ -81,7 +81,7 @@ In the project we have replicated our own version of the following methods;
 
 * GitHub: [@German-Cobian](https://github.com/German-Cobian)
 * Twitter: [@GermanCobian3](https://twitter.com/GermanCobian3)
-* LinkedIn: [German Cobian](https://linkedin.com/german-cobian)
+* LinkedIn: [@german-cobian](https://linkedin.com/german-cobian)
 
 ## 🤝 Contributing
 
