@@ -1,9 +1,8 @@
+![](https://img.shields.io/badge/Microverse-blueviolet)
 
 # Enumerable-Methods
 
 >A set of Ruby's standard enumerable methods re-created by the authors in the very same Ruby programming language.
-![](https://img.shields.io/badge/Microverse-blueviolet)
-
 
 ![screenshot](enumerables-images/my_each-test.png)
 ![screenshot](enumerables-images/my_each_results.png)
@@ -37,7 +36,6 @@ In the project we have replicated our own version of the following methods;
 * Install the ruby programming language.
 
 ### Usage
-
 * Clone this repo on your local machine by running:
       git clonehttps://github.com/German-Cobian/Enumerable-Methods.git
 - cd into the folder you just cloned.
@@ -83,19 +81,21 @@ In the project we have replicated our own version of the following methods;
 * Twitter: [@GermanCobian3](https://twitter.com/GermanCobian3)
 * LinkedIn: [@german-cobian](https://linkedin.com/german-cobian)
 
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](issues/).
 
 ## Show your support
 
 Give a ⭐️ if you like this project!
 
+
 ## Acknowledgments
 
 * Microverse
+
 
 ## 📝 License
 
