@@ -36,10 +36,9 @@ In the project we have replicated our own version of the following methods;
 * Install the ruby programming language.
 
 ### Usage
-* Clone this repo on your local machine by running:
-      git clonehttps://github.com/German-Cobian/Enumerable-Methods.git
-- cd into the folder you just cloned.
-- run ruby enumerables.rb.
+* Clone this repo on your local machine by running `git clonehttps://github.com/German-Cobian/Enumerable-Methods.git`
+- `cd` into the `Enumerable-Methods` folder you just cloned.
+- run `ruby enumerables.rb`
 
 ### Testing with Rspec
   This project is tested with Rspec which is a computer domain-specific language (DSL) testing tool written in the Ruby programming language.
@@ -47,10 +46,8 @@ In the project we have replicated our own version of the following methods;
   ![screenshot](enumerables-images/enum-tests.png)
 
 ### How to get Rspec Running
-* Run the following command in the terminal:
-    gem install rspec
-* This command installs Rspec on your computer. You ensure that Rspec is installed by running the following command to see the installed version:
-    rspec --version
+* Run the following command in the terminal: `gem install rspec`
+* This command installs Rspec on your computer. You ensure that Rspec is installed by running the following command to see the installed version: `rspec --version`
 * You should get output similar to the following:
     RSpec 3.10
       rspec-core 3.10.1
@@ -58,13 +55,10 @@ In the project we have replicated our own version of the following methods;
       rspec-mocks 3.10.2
       rspec-support 3.10.2
 * The rspec gem comes packed with all you need to get started including the 5 gems listed above.
-* Navigate into the AdvancedBuildingBlocks-Enumerables folder:
-    cd AdvancedBuildingBlocks-Enumerables
-* Run the following command to initialize Rspec:
-    rspec --init
+* Navigate into the `AdvancedBuildingBlocks-Enumerables` folder by running `cd AdvancedBuildingBlocks-Enumerables`
+* Run the following command to initialize Rspec: `rspec --init`
 * This generates a /spec folder and a .rspec file at the root of your project.
-* Finally, to run the tests, simply run:
-    rspec
+* Finally, to run the tests, simply run `rspec`
 
 
 ## Authors
@@ -78,7 +72,7 @@ In the project we have replicated our own version of the following methods;
 👤 **German Cobian**
 
 * GitHub: [@German-Cobian](https://github.com/German-Cobian)
-* Twitter: [@GermanCobian3](https://twitter.com/GermanCobian3)
+* Twitter: [@GermanCobian1](https://twitter.com/GermanCobian1)
 * LinkedIn: [@german-cobian](https://linkedin.com/german-cobian)
 
 
@@ -94,7 +88,7 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-* Microverse
+* Guidelines for this project supplied by [The Odin Project](https://github.com/TheOdinProject/curriculum/blob/main/archive/old_lessons/ruby/basic_ruby/project_advanced_building_blocks.md#project-2-enumerable-methods)
 
 
 ## 📝 License
