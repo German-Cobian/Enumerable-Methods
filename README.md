@@ -30,20 +30,23 @@ In the project we have replicated our own version of the following methods;
 
 ## Getting Started
 
-- To run this program on your local machine, simply follow the steps below:
+To run this program on your local machine, simply follow the steps below:
+
 
 ### Prerequisites
 * Install the ruby programming language.
 
 ### Usage
 * Clone this repo on your local machine by running `git clonehttps://github.com/German-Cobian/Enumerable-Methods.git`
-- `cd` into the `Enumerable-Methods` folder you just cloned.
-- run `ruby enumerables.rb`
+* `cd` into the `Enumerable-Methods` folder you just cloned.
+* run `ruby enumerables.rb`
+
 
 ### Testing with Rspec
   This project is tested with Rspec which is a computer domain-specific language (DSL) testing tool written in the Ruby programming language.
 
   ![screenshot](enumerables-images/enum-tests.png)
+
 
 ### How to get Rspec Running
 * Run the following command in the terminal: `gem install rspec`
@@ -55,7 +58,7 @@ In the project we have replicated our own version of the following methods;
       rspec-mocks 3.10.2
       rspec-support 3.10.2
 * The rspec gem comes packed with all you need to get started including the 5 gems listed above.
-* Navigate into the `AdvancedBuildingBlocks-Enumerables` folder by running `cd AdvancedBuildingBlocks-Enumerables`
+* Navigate into the requisite folder by running `cd AdvancedBuildingBlocks-Enumerables`
 * Run the following command to initialize Rspec: `rspec --init`
 * This generates a /spec folder and a .rspec file at the root of your project.
 * Finally, to run the tests, simply run `rspec`
