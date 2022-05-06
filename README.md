@@ -1,8 +1,7 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
 # Enumerable-Methods
-
->A set of Ruby's standard enumerable methods re-created by the authors in the very same Ruby programming language.
+A set of Ruby's standard enumerable methods re-created by the authors in the very same Ruby programming language.
 
 ![screenshot](enumerables-images/my_each-test.png)
 ![screenshot](enumerables-images/my_each_results.png)
@@ -12,7 +11,7 @@
 ![screenshot](enumerables-images/final-results.png)
 
 
-In the project we have replicated our own version of the following methods; 
+In the project we have replicated our own version of the following methods: 
 * each,
 * each_with_index, 
 * select, 
@@ -20,7 +19,7 @@ In the project we have replicated our own version of the following methods;
 * any, 
 * none, 
 * inject, 
-* map using Ruby programming language. 
+* map 
 
 
 ## Built With
