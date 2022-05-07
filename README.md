@@ -51,11 +51,13 @@ To run this program on your local machine, simply follow the steps below:
 * Run the following command in the terminal: `gem install rspec`
 * This command installs Rspec on your computer. You ensure that Rspec is installed by running the following command to see the installed version: `rspec --version`
 * You should get output similar to the following:
-    RSpec 3.10
-      rspec-core 3.10.1
-      rspec-expectations 3.10.1
-      rspec-mocks 3.10.2
-      rspec-support 3.10.2
+  ```
+  RSpec 3.10
+    - rspec-core 3.10.1
+    - rspec-expectations 3.10.1
+    - rspec-mocks 3.10.2
+    - rspec-support 3.10.2
+  ```
 * The rspec gem comes packed with all you need to get started including the 5 gems listed above.
 * Navigate into the requisite folder by running `cd AdvancedBuildingBlocks-Enumerables`
 * Run the following command to initialize Rspec: `rspec --init`
