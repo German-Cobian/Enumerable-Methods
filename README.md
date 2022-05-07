@@ -36,7 +36,7 @@ To run this program on your local machine, simply follow the steps below:
 * Install the ruby programming language.
 
 ### Usage
-* Clone this repo on your local machine by running `git clonehttps://github.com/German-Cobian/Enumerable-Methods.git`
+* Clone this repo on your local machine by running `git clone git@github.com:German-Cobian/Enumerable-Methods.git`
 * `cd` into the `Enumerable-Methods` folder you just cloned.
 * run `ruby enumerables.rb`
 
